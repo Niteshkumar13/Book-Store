@@ -17,19 +17,31 @@ A simple, Node.js + Express REST API using TypeScript and file-based storage. In
 ## 📁 Project Structure
 
 ```
-├── src
-│   ├── index.ts                # App entry point
-│   ├── routes
-│   │   ├── authRoutes.ts       # Auth endpoints
-│   │   └── bookRoutes.ts       # Book endpoints
-│   ├── controller
-│   │   ├── authController.ts   # Auth logic
-│   │   └── booksController.ts  # Book logic
-│   └── middleware
-│       └── middleware.ts       # Auth middleware
 ├── data
-│   ├── users.json              # User data
-│   └── books.json              # Book data
+│   ├── books.json              # Book data (JSON file for storing books)
+│   └── users.json              # User data (JSON file for storing users)
+├── dist                        # Compiled JavaScript output (after build)
+├── node_modules                # Installed dependencies
+├── src                         # Source files
+│   ├── controller              # Logic and business rules
+│   │   ├── authController.ts   # Handles user registration and login
+│   │   └── booksController.ts  # Handles book CRUD operations
+│   ├── middleware              # Custom middlewares
+│   │   └── middleware.ts       # Auth/token verification middleware
+│   ├── routes                  # Express route definitions
+│   │   ├── authRoutes.ts       # Routes for login and registration
+│   │   └── bookRoutes.ts       # Routes for books CRUD
+│   ├── tests                   # Test files for unit/integration testing
+│   │   ├── auth.test.ts        # Tests for auth routes and logic
+│   │   └── books.test.ts       # Tests for book routes and logic
+│   └── index.ts                # App entry point (Express app setup)
+├── .env                        # Environment variables
+├── .gitignore                  # Git ignored files
+├── jest.config.ts             # Jest config for running TypeScript tests
+├── package.json               # Project metadata and dependencies
+├── package-lock.json          # Lockfile for exact dependency versions
+├── Readme.md                  # Project overview and usage
+└── tsconfig.json              # TypeScript configuration
 ```
 
 ---
@@ -134,6 +146,18 @@ Body (JSON): { "title": "New Title" }
 
 ```http
 DELETE /api/v1/books/:id
+Headers: Cookie
+```
+#### 8. Search Book
+
+```http
+GET /api/v1/books?genre=Thriller
+Headers: Cookie
+```
+#### 9. Search Book
+
+```http
+GET /api/v1/books?page=1&limit=5
 Headers: Cookie
 ```
 
